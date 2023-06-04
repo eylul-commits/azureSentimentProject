@@ -1,4 +1,28 @@
+<link rel="stylesheet" type="text/css" href="/style.css"> 
+<link rel="icon" href="data:,">  <!-- TO FIX FAVICON REQUEST -->
 
-<% eksiData.entries.forEach(function(entry){ %>
-    <p> <%- entry.body %> </p>
-   <% }); %>
+ 
+<div class="cardList">
+    <% eksiData.entries.forEach(function(entry){ %>
+     <div class="card">
+      <p class="text"><%- entry.body %></p>
+      <p class="author"><%- entry.author %></p>
+      <div class="sentiment">
+        <p class="label">Overall Sentiment:</p>
+        <p class="value"><%- entry.sentiment %></p>
+      </div>
+      <div class="scores">
+        <p class="label">Positive:</p>
+        <p class="value"><%- entry.positiveConfidence %></p>
+      </div>
+      <div class="scores">
+        <p class="label">Negative:</p>
+        <p class="value"><%- entry.negativeConfidence %></p>
+      </div>
+      <div class="scores">
+        <p class="label">Neutral:</p>
+        <p class="value"><%- entry.neutralConfidence %></p>
+      </div>
+    </div>
+      <% }); %>
+</div>

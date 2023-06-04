@@ -1,4 +1,9 @@
+<link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="icon" href="data:,">
 
+<h1>Basliklar: </h1>
+<li>
     <% titles.forEach(function(title){ %>
-       <p> <%- title.title %> </p>
-      <% }); %>
+      <ul><a id="title0" href="<%-title.slug %>"><%- title.title %></a></ul>
+     <% }); %>
+</li>
