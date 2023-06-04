@@ -1,12 +1,13 @@
 const express = require('express');
 const app=express();
 const fs = require('fs');
+require('dotenv').config();
 app.use(express.static('public'));
 
 const { TextAnalysisClient, AzureKeyCredential } = require("@azure/ai-language-text");
 
-const endpoint = process.env["ENDPOINT"] || "https://sentimentforproject69.cognitiveservices.azure.com/";
-const apiKey = process.env["LANGUAGE_API_KEY"] || "e4161f93aa154e08af993880e948dee9"
+const endpoint = process.env.ENDPOINT;
+const apiKey = process.env.LANGUAGE_API_KEY;
 const client = new TextAnalysisClient(endpoint, new AzureKeyCredential(apiKey));
 
 app.get('/', (req,res)=>{
@@ -27,8 +28,7 @@ app.get('/:slug', (req,res)=>{
           eksiData.entries.at(index).negativeConfidence = JSON.stringify(result[0].confidenceScores.negative);
           eksiData.entries.at(index).neutralConfidence = JSON.stringify(result[0].confidenceScores.neutral);
         }
-/*         jsonForVisual = JSON.stringify(eksiData, null, 2);
-        console.log(jsonForVisual)  */
+
         fs.writeFile('entries.json', JSON.stringify(eksiData, null, 2), (err) => {
           if (err) throw err;
           });
